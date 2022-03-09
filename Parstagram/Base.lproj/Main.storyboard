@@ -108,7 +108,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="392"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2Zk-yb-xys">
+                                                <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="2Zk-yb-xys">
                                                     <rect key="frame" x="8" y="8" width="359" height="348"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="2Zk-yb-xys" secondAttribute="height" multiplier="359:348" id="AZo-CU-qBu"/>
@@ -135,6 +135,7 @@
                                                 <constraint firstItem="2Zk-yb-xys" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="RLD-0i-hBD" secondAttribute="leading" constant="8" id="2Ly-yr-iIi"/>
                                                 <constraint firstItem="2Zk-yb-xys" firstAttribute="top" relation="greaterThanOrEqual" secondItem="RLD-0i-hBD" secondAttribute="top" constant="8" id="2sf-iN-EB2"/>
                                                 <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="3pd-Mb-Exl" secondAttribute="bottom" constant="8" id="85U-4n-fjd"/>
+                                                <constraint firstItem="doe-Tu-FHP" firstAttribute="top" secondItem="2Zk-yb-xys" secondAttribute="bottom" constant="8" id="Ehh-9t-r6J"/>
                                                 <constraint firstItem="3pd-Mb-Exl" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="doe-Tu-FHP" secondAttribute="trailing" constant="8" id="GXG-wY-gwd"/>
                                                 <constraint firstItem="doe-Tu-FHP" firstAttribute="top" relation="greaterThanOrEqual" secondItem="2Zk-yb-xys" secondAttribute="bottom" constant="8" id="Ofc-jK-XAF"/>
                                                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="3pd-Mb-Exl" secondAttribute="trailing" constant="8" id="Tvr-J7-mMl"/>
