@@ -20,7 +20,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         tableView.delegate = self
         tableView.dataSource = self
         // Do any additional setup after loading the view.
-        tableView.rowHeight = 500
+        tableView.rowHeight = 400
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -69,6 +69,30 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
                 let delegate = windowScene.delegate as? SceneDelegate else {return}
         
         delegate.window?.rootViewController = loginViewController
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let post = posts[indexPath.row]
+        
+        let comment = PFObject(className: "Comments")
+        comment["text"] = "comment text"
+        comment["post"] = post
+        comment["author"] = PFUser.current()!
+        
+        print("comment generated")
+        
+        // get random comment
+        let url = URL(string: "https://loripsum.net/api/1/short/plaintext")
+        let request = URLRequest(url: url!)
+        let session = URLSession(configuration: .default)
+        let task = session.dataTask(with: request) { data, request, error in
+            if let error = error {
+                print(error.localizedDescription)
+            } else if let data = data {
+                print(data)
+            }
+        }
+        task.resume()
     }
     /*
     // MARK: - Navigation
