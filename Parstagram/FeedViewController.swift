@@ -20,7 +20,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         tableView.delegate = self
         tableView.dataSource = self
         // Do any additional setup after loading the view.
-        tableView.estimatedRowHeight = 1000
+        tableView.rowHeight = 500
     }
     
     override func viewDidAppear(_ animated: Bool) {

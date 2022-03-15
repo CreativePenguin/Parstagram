@@ -101,14 +101,14 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PostCell" rowHeight="392" id="9M3-B2-R4I" customClass="PostTableViewCell" customModule="Parstagram" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleAspectFit" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PostCell" rowHeight="392" id="9M3-B2-R4I" customClass="PostTableViewCell" customModule="Parstagram" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="44.5" width="375" height="392"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="9M3-B2-R4I" id="RLD-0i-hBD" customClass="PostTableViewCell" customModule="Parstagram" customModuleProvider="target">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="9M3-B2-R4I" id="RLD-0i-hBD" customClass="PostTableViewCell" customModule="Parstagram" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="392"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="EOJ-xq-4UX">
+                                                <stackView opaque="NO" contentMode="scaleAspectFit" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="EOJ-xq-4UX">
                                                     <rect key="frame" x="8" y="8" width="359" height="376"/>
                                                     <subviews>
                                                         <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="2Zk-yb-xys">
@@ -117,11 +117,11 @@
                                                                 <constraint firstAttribute="width" secondItem="2Zk-yb-xys" secondAttribute="height" multiplier="359:348" id="AZo-CU-qBu"/>
                                                             </constraints>
                                                         </imageView>
-                                                        <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jvB-Sr-rXM">
+                                                        <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="jvB-Sr-rXM">
                                                             <rect key="frame" x="0.0" y="348" width="359" height="28"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="doe-Tu-FHP">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="53" height="28"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="48" height="28"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
@@ -139,6 +139,11 @@
                                                             </subviews>
                                                         </stackView>
                                                     </subviews>
+                                                    <constraints>
+                                                        <constraint firstAttribute="trailing" secondItem="2Zk-yb-xys" secondAttribute="trailing" id="HnF-bW-TdM"/>
+                                                        <constraint firstItem="2Zk-yb-xys" firstAttribute="top" secondItem="EOJ-xq-4UX" secondAttribute="top" id="K8c-Em-WqE"/>
+                                                        <constraint firstItem="2Zk-yb-xys" firstAttribute="leading" secondItem="EOJ-xq-4UX" secondAttribute="leading" id="OCI-uG-vzL"/>
+                                                    </constraints>
                                                 </stackView>
                                             </subviews>
                                             <constraints>
