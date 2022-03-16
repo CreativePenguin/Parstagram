@@ -107,7 +107,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="392"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <stackView opaque="NO" contentMode="scaleAspectFit" fixedFrame="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="EOJ-xq-4UX">
+                                                <stackView opaque="NO" contentMode="scaleAspectFit" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="EOJ-xq-4UX">
                                                     <rect key="frame" x="8" y="8" width="359" height="368.5"/>
                                                     <subviews>
                                                         <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2Zk-yb-xys">
@@ -138,13 +138,61 @@
                                                             </subviews>
                                                         </stackView>
                                                     </subviews>
+                                                    <constraints>
+                                                        <constraint firstItem="jvB-Sr-rXM" firstAttribute="top" secondItem="2Zk-yb-xys" secondAttribute="bottom" id="BdX-L5-3Uh"/>
+                                                    </constraints>
                                                 </stackView>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="EOJ-xq-4UX" firstAttribute="centerX" secondItem="RLD-0i-hBD" secondAttribute="centerX" id="NrF-Vw-axM"/>
+                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="EOJ-xq-4UX" secondAttribute="bottom" constant="8" id="l07-Qa-4kv"/>
+                                                <constraint firstItem="EOJ-xq-4UX" firstAttribute="top" secondItem="RLD-0i-hBD" secondAttribute="topMargin" constant="-3" id="sdx-qH-5zy"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="captionLabel" destination="3pd-Mb-Exl" id="riN-Xr-X0Y"/>
                                             <outlet property="nameLabel" destination="doe-Tu-FHP" id="mnt-9C-PMF"/>
                                             <outlet property="photoView" destination="2Zk-yb-xys" id="aRQ-t6-PVI"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CommentCell" id="Ppa-CU-TbZ" customClass="CommentCell" customModule="Parstagram" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="436.5" width="375" height="37"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Ppa-CU-TbZ" id="jgA-zd-0AM">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="37"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="Zar-dt-rCC">
+                                                    <rect key="frame" x="8" y="8" width="359" height="20.5"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fW3-We-FCJ">
+                                                            <rect key="frame" x="0.0" y="0.0" width="48" height="20.5"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="48" id="HJ2-DI-rwG"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Comment Text" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BXZ-V8-I0B">
+                                                            <rect key="frame" x="53" y="0.0" width="306" height="20.5"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </stackView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="Zar-dt-rCC" secondAttribute="trailing" constant="8" id="Bao-pT-tpt"/>
+                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Zar-dt-rCC" secondAttribute="bottom" constant="8" id="Lks-Di-IxR"/>
+                                                <constraint firstItem="Zar-dt-rCC" firstAttribute="leading" secondItem="jgA-zd-0AM" secondAttribute="leading" constant="8" id="ZDv-R0-wji"/>
+                                                <constraint firstItem="Zar-dt-rCC" firstAttribute="top" secondItem="jgA-zd-0AM" secondAttribute="top" constant="8" id="ZW6-Sy-KUM"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="commentLabel" destination="BXZ-V8-I0B" id="dnj-gX-XnU"/>
+                                            <outlet property="nameLabel" destination="fW3-We-FCJ" id="cE3-U9-cag"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

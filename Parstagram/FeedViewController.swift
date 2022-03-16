@@ -8,11 +8,13 @@
 import UIKit
 import Parse
 import AlamofireImage
+import MessageInputBar
 
 class FeedViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var tableView: UITableView!
     var posts = [PFObject]()
+    let commentBar = MessageInputBar()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,13 +23,22 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         tableView.dataSource = self
         // Do any additional setup after loading the view.
         tableView.rowHeight = 400
+//        tableView.estimatedRowHeight = 400
+    }
+    
+    override var canBecomeFirstResponder: Bool {
+        return true
+    }
+    
+    override var inputAccessoryView: UIView? {
+        return commentBar
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         let query = PFQuery(className: "Posts")
-        query.includeKey("author")
+        query.includeKeys(["author", "comments", "comments.author"])
         query.limit = 20
         
         query.findObjectsInBackground { posts, error in
@@ -39,25 +50,43 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        let post = posts[section]
+        let comments = (post["comments"] as? [PFObject]) ?? []
+        
+        return comments.count + 1
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
         return posts.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "PostCell") as! PostTableViewCell
-        let post = posts[indexPath.row]
+        let post = posts[indexPath.section]
+        let comments = (post["comments"] as? [PFObject]) ?? []
         
-        let user = post["author"] as! PFUser
-        cell.nameLabel.text = user.username
-        cell.captionLabel.text = post["caption"] as? String
-        
-        let imageFile = post["image"] as! PFFileObject
-        let urlString = imageFile.url!
-        let url = URL(string: urlString)
-        
-        cell.photoView.af.setImage(withURL: url!)
-        
-        return cell
-                
+        if indexPath.row == 0 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "PostCell") as! PostTableViewCell
+            let user = post["author"] as! PFUser
+            cell.nameLabel.text = user.username
+            cell.captionLabel.text = post["caption"] as? String
+            
+            let imageFile = post["image"] as! PFFileObject
+            let urlString = imageFile.url!
+            let url = URL(string: urlString)
+            
+            cell.photoView.af.setImage(withURL: url!)
+
+            return cell
+        } else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "CommentCell") as! CommentCell
+            
+            let comment = comments[indexPath.row - 1]
+            cell.commentLabel.text = comment["text"] as? String
+            let user = comment["author"] as! PFUser
+            cell.nameLabel.text = user.username
+            
+            return cell
+        }
     }
     
     @IBAction func onLogoutButton(_ sender: Any) {
@@ -80,20 +109,41 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         comment["author"] = PFUser.current()!
         
         print("comment generated")
-        
-        // get random comment
-        let url = URL(string: "https://loripsum.net/api/1/short/plaintext")
-        let request = URLRequest(url: url!)
-        let session = URLSession(configuration: .default)
-        let task = session.dataTask(with: request) { data, request, error in
-            if let error = error {
-                print(error.localizedDescription)
-            } else if let data = data {
-                print(data)
+        post.add(comment, forKey: "comments")
+        post.saveInBackground { success, error in
+            if success {
+                print("comment saved")
+            } else {
+                print("error saving comment")
             }
         }
-        task.resume()
+        
+        // get random comment
+//        let url = URL(string: "https://loripsum.net/api/1/short/plaintext")
+//        let request = URLRequest(url: url!)
+//        let session = URLSession(configuration: .default)
+//        let task = session.dataTask(with: request) { data, request, error in
+//            if let error = error {
+//                print(error.localizedDescription)
+//            } else if let data = data {
+////                let dataDictionary = try! JSONSerialization.jsonObject(with: data, options: []) as! [Int: String]
+////                data as! [Character]
+//                print("random comment generated")
+////                print(dataDictionary)
+//                print(data)
+////                var blah = ""
+////                for letter in data {
+////                    blah.append(letter as Character)
+////                }
+//            }
+//        }
+//        task.resume()
     }
+//
+//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//       return UITableView.automaticDimension
+//    }
+
     /*
     // MARK: - Navigation
 
